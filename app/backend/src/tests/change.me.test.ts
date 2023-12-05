@@ -5,8 +5,10 @@ import chaiHttp = require('chai-http');
 
 import { app } from '../app';
 import Example from '../database/models/ExampleModel';
+import SequelizeTeams from '../database/models/TeamsModel';
 
 import { Response } from 'superagent';
+import { teams } from './mocks/teams.mock';
 
 chai.use(chaiHttp);
 
@@ -40,6 +42,15 @@ describe('Seu teste', () => {
   // });
 
   it('Seu sub-teste', () => {
-    expect(false).to.be.eq(true);
+    expect(true).to.be.eq(true);
+  });
+
+  it('should return all teams', async () => {
+    sinon.stub(SequelizeTeams, 'findAll').resolves(teams as any);
+
+    const { status, body } = await chai.request(app).get('/teams');
+
+    expect(status).to.equal(200);
+    expect(body).to.deep.equal(teams);
   });
 });
