@@ -28,6 +28,8 @@ SequelizeTeams.init({
 }, {
   sequelize: db,
   tableName: 'teams',
+  timestamps: false,
+  underscored: true,
 });
 
 export default SequelizeTeams;
