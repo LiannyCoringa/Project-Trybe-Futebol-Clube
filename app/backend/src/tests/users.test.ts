@@ -79,4 +79,5 @@ describe('Users Test', function() {
     expect(httpResponse.status).to.equal(200);
     expect(httpResponse.body).to.have.key('token');
   });
+  afterEach(sinon.restore);
 });
