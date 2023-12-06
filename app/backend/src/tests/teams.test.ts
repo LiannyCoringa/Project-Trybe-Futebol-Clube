@@ -19,15 +19,15 @@ const { expect } = chai;
 describe('Seu teste', () => {
   beforeEach(function () { sinon.restore(); });
 
-  it('should return all teams', async () => {
-    sinon.stub(SequelizeTeams, 'findAll').resolves(teams as any);
+  it('should return all teams', async function () {
+    sinon.stub(SequelizeTeams, 'findAll').resolves(teams as any[]);
 
     const { status, body } = await chai.request(app).get('/teams');
 
     expect(status).to.equal(200);
     expect(body).to.deep.equal(teams);
   });
-  it('should return a book by id', async function() {
+  it('should return a book by id', async function () {
     sinon.stub(SequelizeTeams, 'findOne').resolves(team as any);
 
     const { status, body } = await chai.request(app).get('/teams/1');
