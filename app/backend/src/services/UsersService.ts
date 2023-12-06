@@ -21,8 +21,18 @@ export default class UsersService {
     if (!userExists || !bcrypt.compareSync(data.password, userExists.password)) {
       return { status: 'INVALID_DATA', data: { message: 'Invalid email or password' } };
     }
-    // const newUser = await this.usersModel.create(data);
-    const token = jwt.sign({ password: data.password });
+    const token = jwt.sign({ email: data.email, password: data.password });
     return { status: 'SUCCESSFUL', data: { token } };
+  }
+
+  public async findByUsersRole(authorization: string):
+  Promise<ServiceResponse<{ role: string }>> {
+    const token = authorization.split(' ')[1];
+    const payload = jwt.verify(token);
+    const user = await this.usersModel.findByEmail(payload.email);
+    if (!user) {
+      return { status: 'INVALID_DATA', data: { message: 'Token must be a valid token' } };
+    }
+    return { status: 'SUCCESSFUL', data: { role: user.role } };
   }
 }

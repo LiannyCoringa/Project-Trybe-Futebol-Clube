@@ -7,7 +7,7 @@ const noPasswordLoginBody = { email: validEmail, password: '' };
 const notExistingUserBody = { email: 'notfound', password: validPassword };
 
 const existingUserWithWrongPasswordBody = { email: validEmail, password: 'wrong_password' };
-const hashedPassword = '$2a$12$W1jLkqQLklrSEU/6HT5dJONiUUKdwSKQDMec4GBJS3kPn9WUPdr/.';
+const hashedPassword = '$2a$12$5tIC3FqPsF/JMM4R41m4J.UnnUA4RkIcMlKKx666Mi5IHpcEtPYhq';
 
 const existingUser = { 
   id: 1, 

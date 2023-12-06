@@ -3,6 +3,7 @@ import * as jwt from 'jsonwebtoken';
 const secret = process.env.JWT_SECRET || 'secret';
 
 type TokenPayload = {
+  email: string,
   password: string,
 };
 

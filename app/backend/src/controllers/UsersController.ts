@@ -9,4 +9,13 @@ export default class UsersController {
     const { status, data } = await this.usersService.findByEmail(req.body);
     return res.status(mapStatusHTTP(status)).json(data);
   }
+
+  public async getByRole(req: Request, res: Response) {
+    const { authorization } = req.headers;
+    if (!authorization) {
+      return res.status(401).json({ message: 'Token not found' });
+    }
+    const { status, data } = await this.usersService.findByUsersRole(authorization);
+    return res.status(mapStatusHTTP(status)).json(data);
+  }
 }
