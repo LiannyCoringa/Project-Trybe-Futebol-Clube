@@ -13,9 +13,13 @@ export default class UsersService {
   ) { }
 
   public async findByEmail(data: NewEntity<IUsers>): Promise<ServiceResponse<TokenPayload>> {
+    const regex = /[A-Za-z0-9]+@[A-Za-z]+\.[a-z]{2,3}/;
+    if (!regex.test(data.email)) {
+      return { status: 'INVALID_DATA', data: { message: 'Invalid email or password' } };
+    }
     const userExists = await this.usersModel.findByEmail(data.email);
     if (!userExists || !bcrypt.compareSync(data.password, userExists.password)) {
-      return { status: 'UNAUTHORIZED', data: { message: 'Invalid email or password' } };
+      return { status: 'INVALID_DATA', data: { message: 'Invalid email or password' } };
     }
     // const newUser = await this.usersModel.create(data);
     const token = jwt.sign({ password: data.password });
