@@ -1,6 +1,7 @@
 import { IUsers } from './IUsers';
 
 export interface IUsersModel {
-  findAll(): Promise<IUsers[]>,
-  findById(id: number): Promise<IUsers | null>
+  // create(data: Partial<IUsers>): Promise<IUsers>;
+  findByEmail(email: string): Promise<IUsers | null>;
+  findById(id: number): Promise<IUsers | null>;
 }
