@@ -65,6 +65,6 @@ const teams = [
   }
 ]
 
-const team = { id: 1, team_name: 'Avaí/Kindermann' };
+const team = { "id": 1, "teamName": 'Avaí/Kindermann' };
 
 export { teams, team };

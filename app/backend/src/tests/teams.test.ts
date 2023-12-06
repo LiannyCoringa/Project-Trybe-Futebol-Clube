@@ -27,7 +27,7 @@ describe('Seu teste', () => {
     expect(status).to.equal(200);
     expect(body).to.deep.equal(teams);
   });
-  it('should return a book by id', async function () {
+  it('should return a teams by id', async function () {
     sinon.stub(SequelizeTeams, 'findOne').resolves(team as any);
 
     const { status, body } = await chai.request(app).get('/teams/1');
