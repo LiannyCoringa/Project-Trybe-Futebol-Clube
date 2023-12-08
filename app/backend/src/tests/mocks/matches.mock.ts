@@ -13,6 +13,15 @@ const match = {
   }
 };
 
+const matchCreate = {
+  "id": 1,
+  "homeTeamId": 16,
+  "homeTeamGoals": 1,
+  "awayTeamId": 8,
+  "awayTeamGoals": 1,
+  "inProgress": false,
+};
+
 const matches = [match];
 const matchesInProgress = [
   {
@@ -74,4 +83,4 @@ const matchesFinished = [{
   }
 }];
 
-export { match, matches, matchesInProgress, matchesFinished };
+export { match, matches, matchesInProgress, matchesFinished, matchCreate };

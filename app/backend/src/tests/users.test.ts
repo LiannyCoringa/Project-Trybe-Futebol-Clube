@@ -79,5 +79,18 @@ describe('Users Test', function() {
     expect(httpResponse.status).to.equal(200);
     expect(httpResponse.body).to.have.key('token');
   });
+  it('retorna o usuário logado', async function () {
+    // Arrange
+    const httpRequestBody = usersMock.validLoginBody
+    const mockFindOneReturn = SequelizeUsers.build(usersMock.existingUser);
+    sinon.stub(SequelizeUsers, 'findOne').resolves(mockFindOneReturn);
+
+    // Act
+    const httpResponse = await chai.request(app).post('/login').send(httpRequestBody);
+
+    // Assert
+    expect(httpResponse.status).to.equal(200);
+    expect(httpResponse.body).to.have.key('token');
+  });
   afterEach(sinon.restore);
 });
