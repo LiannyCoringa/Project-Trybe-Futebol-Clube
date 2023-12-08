@@ -1,3 +1,4 @@
+import { ITeams } from '../teams/ITeams';
 import { IMatches } from './IMatches';
 
 export interface IMatchesModel {
@@ -10,4 +11,5 @@ export interface IMatchesModel {
     awayTeamId: number,
     awayTeamGoals: number,
   ): Promise<IMatches>,
+  findById(id: string): Promise<ITeams | null>,
 }

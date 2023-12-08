@@ -39,8 +39,9 @@ export default class MatchesController {
 
   public async createMatch(req: Request, res: Response): Promise<Response> {
     const { homeTeamId, homeTeamGoals, awayTeamId, awayTeamGoals } = req.body;
-    const { data } = await this.matchesService
+    const { status, data } = await this.matchesService
       .createMatch(homeTeamId, homeTeamGoals, awayTeamId, awayTeamGoals);
+    if (status !== 'SUCCESSFUL') { return res.status(mapStatusHTTP(status)).json(data); }
     return res.status(201).json(data);
   }
 }

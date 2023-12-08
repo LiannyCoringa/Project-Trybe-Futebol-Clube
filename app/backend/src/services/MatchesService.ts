@@ -29,6 +29,12 @@ export default class MatchesService {
     awayTeamGoals: number,
   )
     : Promise<ServiceResponse<IMatches>> {
+    const homeExists = await this.matchesModel.findById(String(homeTeamId));
+    const awayExists = await this.matchesModel.findById(String(awayTeamId));
+    if (!homeExists || !awayExists) {
+      return { status: 'NOT_FOUND', data: { message: 'There is no team with such id!' } };
+    }
+
     const match = await this.matchesModel.createMatch(
       homeTeamId,
       homeTeamGoals,
