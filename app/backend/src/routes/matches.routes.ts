@@ -17,5 +17,10 @@ router.patch(
   authMiddleware.authMiddleware,
   (req: Request, res: Response) => matchesController.updateMatchFinish(req, res),
 );
+router.post(
+  '/',
+  authMiddleware.authMiddleware,
+  (req: Request, res: Response) => matchesController.createMatch(req, res),
+);
 
 export default router;
