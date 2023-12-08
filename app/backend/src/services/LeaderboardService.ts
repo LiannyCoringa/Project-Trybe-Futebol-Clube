@@ -6,8 +6,13 @@ import { ServiceResponse } from '../Interfaces/ServiceResponse';
 export default class LeaderboardService {
   constructor(private leaderboardModel: ILeaderboardModel = new LeaderboardModel()) { }
 
-  public async getLeaderboard(): Promise<ServiceResponse<ILeaderboard[]>> {
-    const leaderboard = await this.leaderboardModel.getLeaderboard();
+  public async getLeaderboardHome(): Promise<ServiceResponse<ILeaderboard[]>> {
+    const leaderboard = await this.leaderboardModel.getLeaderboardHome();
+    return { status: 'SUCCESSFUL', data: leaderboard };
+  }
+
+  public async getLeaderboardAway(): Promise<ServiceResponse<ILeaderboard[]>> {
+    const leaderboard = await this.leaderboardModel.getLeaderboardAway();
     return { status: 'SUCCESSFUL', data: leaderboard };
   }
 }
