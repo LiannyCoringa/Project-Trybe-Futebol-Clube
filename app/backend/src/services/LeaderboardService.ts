@@ -15,4 +15,9 @@ export default class LeaderboardService {
     const leaderboard = await this.leaderboardModel.getLeaderboardAway();
     return { status: 'SUCCESSFUL', data: leaderboard };
   }
+
+  public async getLeaderboard(): Promise<ServiceResponse<ILeaderboard[]>> {
+    const leaderboard = await this.leaderboardModel.getLeaderboard();
+    return { status: 'SUCCESSFUL', data: leaderboard };
+  }
 }
